@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Randevu Al</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="../index.html" class="logo">
+                <img src="../images/logo.png" alt="Lavinia Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html" class="btn">Ana Sayfa</a></li>
+                <li><a href="../hizmetlerimiz.html" style="color: black;">Hizmetlerimiz</a></li>
+                <li><a href="../hakkimizda.html" style="color: black;">Hakkımızda</a></li>
+                <li><a href="../blog.html" style="color: black;">Blog</a></li>
+                <li><a href="../iletisim.html" style="color: black;">İletişim</a></li>
+                <li><a href="../logandreg/login.html" class="btn">Giriş Yap</a></li>
+                <li><a href="../logandreg/register.html" class="btn">Kayıt Ol</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Appointment Section -->
+    <section class="appointment-section">
+        <div class="container">
+            <h2>Randevu Al</h2>
+            <form action="#" method="post" class="appointment-form">
+                <div class="input-group">
+                    <label for="name">İsim Soyisim</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="phone">Telefon Numarası</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>            
+                <div class="input-group">
+                    <label for="service">Hizmet Seçimi</label>
+                    <select id="service" name="service" required>
+                        <option value="">Hizmet seçin</option>
+                        <option value="reformer">Reformer Pilates</option>
+                        <option value="hamile">Hamile Pilates</option>
+                        <option value="yoga">Yoga Terapi</option>
+                        <option value="manuel">Manuel Terapi</option>
+                        <option value="pelvik">Pelvik Taban Rehabilitasyonu</option>
+                        <option value="skolyoz">3 Boyutlu Skolyoz Egzersizleri</option>
+                        <option value="kanser">Kanser Sonrası Egzersiz Danışmanlığı</option>
+                        <option value="zumba">Dans ve Zumba</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="date">Randevu Tarihi</label>
+                    <select id="date" name="date" required>
+                        <option value="">Tarih seçin</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Randevu Al</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section logo-section">
+                    <img src="../images/logo.png" alt="Lavinia Logo">
+                    <p>Lavinia Egzersiz ve Danışmanlık Merkezi</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section contact-section">
+                    <h3>İletişim Bilgileri</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Adres: Orta, İnönü Cd. No:61, 61300 Akçaabat/Trabzon</p>
+                    <p><i class="fas fa-envelope"></i> Email: info@lavinia.com</p>
+                    <p><i class="fas fa-phone-alt"></i> Telefon: 0561 661 61 61</p>
+                    <a href="../appointment/appointment.html" class="btn">RANDEVU AL</a>
+                </div>
+                <div class="footer-section services-section">
+                    <h3>Hizmetlerimiz</h3>
+                    <p>Reformer Pilates</p>
+                    <p>Hamile Pilates</p>
+                    <p>Yoga Terapi</p>
+                    <p>Manuel Terapi</p>
+                    <p>Pelvik Taban Rehabilitasyonu</p>
+                    <p>3 Boyutlu Skolyoz Egzersizleri</p>
+                    <p>Kanser Sonrası Egzersiz Danışmanlığı</p>
+                    <p>Dans ve Zumba</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© Copyright 2020 - 2024 | Lavinia Egzersiz ve Danışmanlık Merkezi | Tüm hakları saklıdır | Design SelmanKara</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

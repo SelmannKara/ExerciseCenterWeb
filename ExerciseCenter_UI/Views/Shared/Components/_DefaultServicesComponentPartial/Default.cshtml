@@ -1,0 +1,17 @@
+﻿@model List< ExerciseCenter_UI.Models.ServiceModels.ServiceViewModel>
+<section class="services">
+    <div class="container">
+        <h2>Hizmetlerimiz</h2>
+        <div class="service-cards">
+            <div class="row">
+                @foreach(var item in Model){
+                <div class="card">
+                    <img src="~/ExerciseCenter/images/services1.jpg" style="height: 300px ; width: 540px;" alt="Reformer Pilates">
+                    <h3>@item.Name</h3>
+                    <a href="#" class="btn">Daha Fazla Bilgi</a>
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
