@@ -1,0 +1,20 @@
+﻿@model List<ExerciseCenter_UI.Models.WhoWeAreModels.WhoWeAreViewModel>
+<section class="about py-5" style=" height:900px;  background-image: url('/ExerciseCenter/images/servicesdescription1.jpg'); background-size: cover; background-position: center;">
+    <div class="container">
+        <h2 class="text-center text-white mb-5">Lavinia Egzersiz ve Danışmanlık Hizmetleri</h2>
+        <div class="row">
+            @foreach(var item in Model){
+            <div class="col-md-6">
+                <div class="about-item d-flex align-items-center mb-4">
+                    <i class="fas fa-seedling fa-2x text-primary mr-3"></i>
+                    <div>
+                        <h3 class="text-primary">@item.Title</h3>
+                        <p>@item.Description</p>
+                    </div>
+                </div>
+            </div>
+            }
+       
+        </div>
+    </div>
+</section>

@@ -1,0 +1,23 @@
+﻿@model List<ExerciseCenter_UI.Models.BlogPostsModels.BlogPostsViewModel>
+<section class="blog py-5">
+    <div class="container">
+        <h2 class="text-center">Blog Yazılarımız</h2>
+        <div class="blog-slider">
+            @foreach(var item in Model)
+            {
+            <div class="blog-card">
+                <div class="blog-card-img">
+                    <img src="@item.ImageUrl" alt="Gebelikte Beslenme">
+                </div>
+                <div class="blog-card-content">
+                    <h3>@item.Title</h3>
+                    <p>Gebelik nedir? Gebelik, kadın üreme hücresinin...</p>
+                </div>
+            </div>
+            }
+        </div>
+        <div class="blog-btn-container text-center mt-4">
+            <a href="#" class="btn btn-primary">Diğer Blog Yazılarımız</a>
+        </div>
+    </div>
+</section>

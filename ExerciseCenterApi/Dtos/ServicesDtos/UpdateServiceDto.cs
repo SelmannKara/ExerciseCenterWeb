@@ -1,8 +1,7 @@
-﻿namespace ExerciseCenter_API.Models.ServicesModels
+﻿namespace ExerciseCenter_API.Dtos.ServicesDtos
 {
-    public class Service
+    public class UpdateServiceDto
     {
-        public int ServiceID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }

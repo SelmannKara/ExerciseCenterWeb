@@ -1,9 +1,9 @@
-﻿namespace ExerciseCenter_API.Dtos
+﻿namespace ExerciseCenter_API.Dtos.ServicesDtos
 {
-    public class ServiceDto
+    public class ResultServiceDto
     {
         public int ServiceID { get; set; }
-        public string ServiceName { get; set; }
+        public string Name { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }
     }

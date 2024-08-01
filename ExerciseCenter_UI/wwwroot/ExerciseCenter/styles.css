@@ -2,25 +2,15 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-}
-
-.container {
-    width: 90%;
-    margin: auto;
+    height: 100%;
 }
 
 .navbar {
     background: transparent;
-    position: absolute;
-    width: 100%;
-    z-index: 1000;
+    z-index: 10; /* Make sure navbar is above hero */
     padding: 20px 0;
-}
-
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    position: absolute; /* Ensure navbar is over the hero image */
+    width: 100%;
 }
 
 .logo img {
@@ -28,16 +18,11 @@ body, html {
     width: 200px;
 }
 
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-.nav-links a {
+.nav-link {
     text-decoration: none;
-    color: #fff;
+    color: #fff; /* Ensure links are visible over the hero image */
     font-size: 16px;
+    padding: 5px 10px;
 }
 
 .btn {
@@ -46,54 +31,49 @@ body, html {
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
+    transition: background-color 0.3s ease;
+    z-index: 11; /* Ensure buttons are above other elements */
+}
+
+.btn:hover {
+    background-color: #4b2282;
 }
 
 .hero {
     position: relative;
     height: 70vh;
+    background: url('images/pilates1.jpg') no-repeat center center/cover;
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    color: #fff;
-    background: url('images/pilates1.jpg') no-repeat center center/cover;
-    z-index: 1;
+    z-index: 1; /* Background level */
 }
 
 .hero-content {
     position: relative;
-    z-index: 2;
+    z-index: 2; /* Make sure hero content is above the background */
+    text-align: center;
 }
 
-.wave {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 150px;
-    background: url('images/wave.svg') repeat-x;
-    background-size: cover;
-}
-/* Dalga efektini tanımlayan SVG */
 .wave-container {
     position: relative;
-    height: 150px; /* Dalganın yüksekliği */
+    height: 150px;
     overflow: hidden;
-    background: #fff; /* Beyaz arka plan */
+    background: #fff;
 }
 
 .wave-container svg {
     position: absolute;
-    top: -10px; /* Dalganın yukarıya taşmasını sağlar */
+    top: -10px;
     left: 0;
     width: 100%;
     height: auto;
 }
 
-/* Dalga altındaki içeriği taşımak için boşluk */
 .wave-space {
-    height: 150px; /* Dalganın yüksekliği kadar boşluk bırakılır */
+    height: 150px;
 }
-
 
 .services, .about, .blog, .testimonials {
     padding: 50px 0;
@@ -105,36 +85,20 @@ body, html {
     color: #5c2d91;
 }
 
-.service-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-
-.services .row {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
-
 .card {
-    background: #fff;
     border: 1px solid #eee;
     border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    width: calc(33.333% - 40px);
-    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
 }
 
 .card img {
-    max-width: 100%;
-    height: 200px;
     object-fit: cover;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 15px;
 }
 
 .card h3 {
@@ -148,12 +112,15 @@ body, html {
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.card .btn:hover {
+    background-color: #4b2282;
 }
 
 .about {
-    position: relative;
     color: #fff;
-    text-align: left;  
     padding: 50px 0;
     background-image: url('images/servicesdescription1.jpg');
     background-size: cover;
@@ -162,31 +129,21 @@ body, html {
 
 .about-content {
     display: flex;
-    justify-content: center; /* Ortada hizalamak için */
-    gap: 100px; /* Kolonlar arası boşluk */
-    align-items: flex-start; /* Üstten hizalamak için */
+    justify-content: center;
+    align-items: flex-start;
+    gap: 100px;
     text-align: left;
-}
-
-.about-column {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
 }
 
 .about-item {
     display: flex;
     align-items: center;
     gap: 15px;
-    width: 300px; /* Her bir bölümün genişliği */
 }
 
-.about-item.reverse {
-    flex-direction: row-reverse;
-}
-
-.text-content {
-    max-width: 300px; /* Metin içeriğinin maksimum genişliği */
+.about-item i {
+    font-size: 2em;
+    color: #5c2d91;
 }
 
 .about-item h3 {
@@ -196,16 +153,7 @@ body, html {
 
 .about-item p {
     color: #000;
-    word-wrap: break-word; /* Uzun kelimelerin taşmasını önler */
-}
-
-.about-item i {
-    font-size: 2em;
-    color: #5c2d91;
-}
-
-.blog {
-    position: relative;
+    word-wrap: break-word;
 }
 
 .blog-slider {
@@ -221,13 +169,15 @@ body, html {
     border-radius: 10px;
     padding: 20px;
     text-align: center;
-    width: calc(50% - 20px);
+    width: 100%;
+    max-width: 540px;
     box-sizing: border-box;
+    margin: 0 auto;
 }
 
 .blog-card-img {
     width: 100%;
-    height: 450px;
+    height: 300px;
     overflow: hidden;
 }
 
@@ -256,7 +206,6 @@ body, html {
     padding: 50px 0;
     background: url('images/deneme.png') no-repeat center center/cover;
     color: #fff;
-    height: 800px;
 }
 
 .testimonials h2 {
@@ -279,16 +228,17 @@ body, html {
 }
 
 .testimonial {
-    background: rgba(255, 255, 255, 0.1); /* Hafif şeffaf beyaz arka plan */
+    background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     padding: 20px;
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     box-sizing: border-box;
 }
 
 .testimonial i {
     font-size: 2em;
-    color: #fff;
+    color: #5c2d91;
     margin-bottom: 10px;
     text-align: center;
 }
@@ -307,29 +257,15 @@ footer {
 
 .footer-content {
     display: flex;
-    gap: 20px;
-    justify-content: space-between;
     flex-wrap: wrap;
-}
-
-.footer-section {
-    flex: 1;
-    min-width: 200px;
-    text-align: center; /* Metinleri ortalamak için */
-}
-
-.footer-section.logo-section img {
-    height: 140px; /* Logoyu büyüttük */
-    margin-bottom: 10px;
-}
-
-.footer-section.logo-section p {
+    justify-content: space-between;
+    gap: 20px;
     text-align: center;
 }
 
-.footer-section p, .footer-section a {
-    color: #fff;
-    text-decoration: none;
+.footer-section img {
+    height: 140px;
+    margin-bottom: 10px;
 }
 
 .footer-section h3 {
@@ -337,8 +273,9 @@ footer {
     color: #00A0E3;
 }
 
-.footer-section p i {
-    margin-right: 10px;
+.footer-section p, .footer-section a {
+    color: #fff;
+    text-decoration: none;
 }
 
 .footer-section .btn {
@@ -353,7 +290,7 @@ footer {
 
 .social-icons {
     margin-top: 10px;
-    text-align: center; /* Social iconsları ortaladık */
+    text-align: center;
 }
 
 .social-icons a {
@@ -370,27 +307,33 @@ footer {
     color: #aaa;
 }
 
+/* Ensure that the "Hizmetlerimiz" list items are styled consistently */
+.footer-content ul {
+    list-style-type: none;
+    padding: 0;
+}
 
-/* Sağda hizalanmış öğeler için ek stiller */
+.footer-content ul li {
+    margin: 5px 0;
+}
+
+
+.social-icons {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.social-icons a {
+    color: #fff;
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+
 .right-align {
     text-align: left;
 }
 
-.right-align .about-item {
-    justify-content: flex-start;
-}
-
-.right-align .about-item.reverse {
-    justify-content: flex-start;
-}
-
-.about-item.right-align i {
-    margin-left: 15px;
-}
-
-.about-item.left-align i {
-    margin-right: 15px;
-}
 .blog-btn-container {
     display: flex;
     justify-content: center;

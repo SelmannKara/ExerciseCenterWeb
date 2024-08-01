@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewComponents\Layout\" />
     <Folder Include="Views\Default\" />
   </ItemGroup>
 

@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using ExerciseCenter_API.Dtos;
+using ExerciseCenter_API.Dtos.ServicesDtos;
 using ExerciseCenter_API.Models.ServicesModels;
 using ExerciseCenter_API.Repositories.ServicesRepository;
 
-namespace ExerciseCenter_API.Services
+namespace ExerciseCenter_API.Services.ServicesService
 {
-    public class ServiceService:IServiceService
+    public class ServiceService : IServiceService
     {
         private readonly IMapper _mapper;
         private readonly IServiceRepository _serviceRepository;
@@ -16,26 +16,26 @@ namespace ExerciseCenter_API.Services
             _serviceRepository = serviceRepository;
         }
 
-        public async Task<IEnumerable<ServiceDto>> GetAllServices()
+        public async Task<IEnumerable<ResultServiceDto>> GetAllServices()
         {
             var services = await _serviceRepository.GetAllServices();
-            return _mapper.Map<IEnumerable<ServiceDto>>(services);
+            return _mapper.Map<IEnumerable<ResultServiceDto>>(services);
         }
 
-        public async Task<ServiceDto> GetServiceById(int id)
+        public async Task<ResultServiceDto> GetServiceById(int id)
         {
             var service = await _serviceRepository.GetServiceById(id);
-            return _mapper.Map<ServiceDto>(service);
+            return _mapper.Map<ResultServiceDto>(service);
         }
 
-        public async Task<ServiceDto> CreateService(ServiceCreateDto serviceCreateDto)
+        public async Task<ResultServiceDto> CreateService(CreateServiceDto serviceCreateDto)
         {
             var service = _mapper.Map<Service>(serviceCreateDto);
             var createdService = await _serviceRepository.CreateService(service);
-            return _mapper.Map<ServiceDto>(createdService);
+            return _mapper.Map<ResultServiceDto>(createdService);
         }
 
-        public async Task UpdateService(int id, ServiceUpdateDto serviceUpdateDto)
+        public async Task UpdateService(int id, UpdateServiceDto serviceUpdateDto)
         {
             var service = await _serviceRepository.GetServiceById(id);
             _mapper.Map(serviceUpdateDto, service);
