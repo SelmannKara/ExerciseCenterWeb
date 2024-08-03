@@ -1,23 +1,90 @@
-﻿using ExerciseCenter_UI.Models.ServiceModels;
+﻿using ExerciseCenter_UI.Dtos.ServicesDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Text;
 
-namespace ExerciseCenter_UI.Controllers.ServicesController
+namespace RealEstate_Dapper_UI.Controllers
 {
     public class ServicesController : Controller
     {
-        private readonly HttpClient _httpClient;
-
-        public ServicesController(HttpClient httpClient)
+        private readonly IHttpClientFactory _httpClientFactory;
+        public ServicesController(IHttpClientFactory httpClientFactory)
         {
-            _httpClient = httpClient;
+            _httpClientFactory = httpClientFactory;
         }
-
         public async Task<IActionResult> Index()
         {
-            var response = await _httpClient.GetStringAsync("https://localhost:7078/api/services");
-            var services = JsonConvert.DeserializeObject<List<ServiceViewModel>>(response);
-            return View(services);
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync("https://localhost:44310/api/Services");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<List<ResultServiceDto>>(jsonData);
+                return View(values);
+            }
+            return View();
+        }
+        [HttpGet]
+        public IActionResult CreateServices()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateServices(CreateServiceDto createServicesDto)
+        {
+           
+                var client = _httpClientFactory.CreateClient();
+                var jsonData = JsonConvert.SerializeObject(createServicesDto);
+                StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                var responseMessage = await client.PostAsync("https://localhost:44310/api/Services", stringContent);
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    // API yanıtının içeriğini kontrol edelim
+                    var responseContent = await responseMessage.Content.ReadAsStringAsync();
+                    Console.WriteLine(responseContent); // Bu satır hata ayıklamak için
+                    return RedirectToAction("Index");
+                }
+
+            return View();
+        }
+
+        public async Task<IActionResult> DeleteServices(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var reponseMessage = await client.DeleteAsync($"https://localhost:44310/api/Services/{id}");
+            if (reponseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        [HttpGet]
+        public async Task<IActionResult> UpdateServices(int id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync($"https://localhost:44310/api/Services/{id}");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                var values = JsonConvert.DeserializeObject<UpdateServiceDto>(jsonData);
+                return View(values);
+            }
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> UpdateServices(UpdateServiceDto updateServicesDto)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var jsonData = JsonConvert.SerializeObject(updateServicesDto);
+            StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var responseMessage = await client.PutAsync("https://localhost:44310/api/Services/", stringContent);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
         }
     }
 }

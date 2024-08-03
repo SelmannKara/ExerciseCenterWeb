@@ -15,7 +15,7 @@ namespace ExerciseCenter_UI.Controllers.WhoWeAreController
 
         public async Task<IActionResult> Index()
         {
-            var response = await _httpClient.GetStringAsync("https://localhost:7078/api/WhoWeAre");
+            var response = await _httpClient.GetStringAsync("https://localhost:44310/api/WhoWeAre");
             var whoWeAre = JsonConvert.DeserializeObject<List<WhoWeAreViewModel>>(response);
             return View(whoWeAre);
         }

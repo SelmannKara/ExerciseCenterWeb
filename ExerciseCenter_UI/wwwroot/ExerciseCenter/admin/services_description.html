@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lavinia Egzersiz ve Danışmanlık Hizmetleri - Admin Panel</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="admin_panel.css">
+</head>
+<body>
+
+    <!-- Sidebar and Navbar (Include or use the existing one) -->
+
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="profile-section">
+                <img src="images/profile.jpg" alt="Admin Profil" class="profile-img">
+                <h4>Admin Kullanıcısı</h4>
+            </div>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="hizmetlerimiz.html">Hizmetlerimiz</a>
+            <a href="lavinia_egzersiz.html">Lavinia Egzersiz ve Danışmanlık Hizmetleri</a>
+            <a href="blog_yazilarimiz.html">Blog Yazılarımız</a>
+            <a href="yorumlar.html">Yorumlar</a>
+            <a href="#">Çıkış Yap</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <h2>Lavinia Egzersiz ve Danışmanlık Hizmetleri</h2>
+            <p>Bu sayfada Lavinia Egzersiz ve Danışmanlık Hizmetleri hakkında içerikleri yönetebilirsiniz.</p>
+
+            <!-- İçerikleri Listeleme ve Güncelleme -->
+            <div class="card">
+                <div class="card-header">
+                    Mevcut İçerikler
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="contentTitle">Başlık</label>
+                            <input type="text" class="form-control" id="contentTitle" value="Amacımız">
+                        </div>
+                        <div class="form-group">
+                            <label for="contentText">İçerik</label>
+                            <textarea class="form-control" id="contentText" rows="5">Amacımız kişilerde doğru egzersiz bilincini oluşturmak...</textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Güncelle</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Yeni İçerik Ekleme -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    Yeni İçerik Ekle
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="newContentTitle">Yeni Başlık</label>
+                            <input type="text" class="form-control" id="newContentTitle" placeholder="Başlık">
+                        </div>
+                        <div class="form-group">
+                            <label for="newContentText">Yeni İçerik</label>
+                            <textarea class="form-control" id="newContentText" rows="5" placeholder="İçerik"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

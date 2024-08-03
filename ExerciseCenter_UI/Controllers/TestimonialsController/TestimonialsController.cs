@@ -15,7 +15,7 @@ namespace ExerciseCenter_UI.Controllers.TestimonialsController
 
         public async Task<IActionResult> Index()
         {
-            var response = await _httpClient.GetStringAsync("https://localhost:7078/api/Testimonials");
+            var response = await _httpClient.GetStringAsync("https://localhost:44310/api/Testimonials");
             var testimonials = JsonConvert.DeserializeObject<List<TestimonialsViewModel>>(response);
             return View(testimonials);
         }

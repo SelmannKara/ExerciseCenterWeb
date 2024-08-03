@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Admin Panel</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="admin_panel.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Admin Panel</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="images/profile.jpg" alt="Profile" class="profile-image">
+                        Admin Kullanıcısı
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
+                        <a class="dropdown-item" href="#">Hesabım</a>
+                        <a class="dropdown-item" href="#">Çıkış Yap</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="profile-section">
+                <img src="images/profile.jpg" alt="Admin Profil" class="profile-img">
+                <h4>Admin Kullanıcısı</h4>
+            </div>
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="hizmetlerimiz.html">Hizmetlerimiz</a>
+            <a href="lavinia_egzersiz.html">Lavinia Egzersiz ve Danışmanlık Hizmetleri</a>
+            <a href="blog_yazilarimiz.html">Blog Yazılarımız</a>
+            <a href="yorumlar.html">Yorumlar</a>
+            <a href="#">Çıkış Yap</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <h2>Dashboard</h2>
+            <p>Admin paneline hoş geldiniz! Aşağıdaki bağlantılarla içeriği yönetebilirsiniz.</p>
+
+            <div class="row">
+                <!-- Hizmetlerimiz -->
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Hizmetlerimiz</h5>
+                            <p class="card-text">Hizmetlerinizi yönetin, yeni hizmetler ekleyin veya mevcutları güncelleyin.</p>
+                            <a href="hizmetlerimiz.html" class="btn btn-primary">Hizmetleri Yönet</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lavinia Egzersiz ve Danışmanlık Hizmetleri -->
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Lavinia Egzersiz ve Danışmanlık Hizmetleri</h5>
+                            <p class="card-text">Egzersiz ve danışmanlık içeriklerini yönetin.</p>
+                            <a href="lavinia_egzersiz.html" class="btn btn-primary">İçerikleri Yönet</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blog Yazılarımız -->
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Blog Yazılarımız</h5>
+                            <p class="card-text">Blog yazılarını yönetin ve yeni içerikler oluşturun.</p>
+                            <a href="blog_yazilarimiz.html" class="btn btn-primary">Blogları Yönet</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Yorumlar -->
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Yorumlar</h5>
+                            <p class="card-text">Müşteri yorumlarını yönetin ve yeni yorumlar ekleyin.</p>
+                            <a href="yorumlar.html" class="btn btn-primary">Yorumları Yönet</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

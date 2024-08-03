@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Yazılarımız - Admin Panel</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="admin_panel.css">
+</head>
+<body>
+
+    <!-- Sidebar and Navbar (Include or use the existing one) -->
+
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="profile-section">
+                <img src="images/profile.jpg" alt="Admin Profil" class="profile-img">
+                <h4>Admin Kullanıcısı</h4>
+            </div>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="hizmetlerimiz.html">Hizmetlerimiz</a>
+            <a href="lavinia_egzersiz.html">Lavinia Egzersiz ve Danışmanlık Hizmetleri</a>
+            <a href="blog_yazilarimiz.html">Blog Yazılarımız</a>
+            <a href="yorumlar.html">Yorumlar</a>
+            <a href="#">Çıkış Yap</a>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <h2>Blog Yazılarımız</h2>
+            <p>Bu sayfada blog yazılarınızı yönetebilirsiniz.</p>
+
+            <!-- Blog Yazılarını Listeleme -->
+            <div class="card">
+                <div class="card-header">
+                    Blog Yazıları Listesi
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Başlık</th>
+                                <th>İçerik</th>
+                                <th>Resim</th>
+                                <th>Güncelle</th>
+                                <th>Sil</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Gebelikte Beslenme</td>
+                                <td>Kısa içerik açıklaması burada yer alacak...</td>
+                                <td><img src="images/blog1.jpg" alt="Gebelikte Beslenme" style="height: 50px;"></td>
+                                <td><button class="btn btn-warning btn-sm">Güncelle</button></td>
+                                <td><button class="btn btn-danger btn-sm">Sil</button></td>
+                            </tr>
+                            <!-- Diğer blog yazıları için benzer satırlar -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Yeni Blog Yazısı Ekleme -->
+            <div class="card mt-4">
+                <div class="card-header">
+                    Yeni Blog Yazısı Ekle
+                </div>
+                <div class="card-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="blogTitle">Başlık</label>
+                            <input type="text" class="form-control" id="blogTitle" placeholder="Başlık">
+                        </div>
+                        <div class="form-group">
+                            <label for="blogContent">İçerik</label>
+                            <textarea class="form-control" id="blogContent" rows="5" placeholder="İçerik"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="blogImage">Resim URL</label>
+                            <input type="text" class="form-control" id="blogImage" placeholder="Resim URL">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Ekle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
