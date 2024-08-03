@@ -1,5 +1,4 @@
-﻿
-@model List<ExerciseCenter_UI.Dtos.ServicesDtos.ResultServiceDto>
+﻿@model List<ExerciseCenter_UI.Dtos.ServicesDtos.ResultServiceDto>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Admin/Index.cshtml";
@@ -45,7 +44,6 @@
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">
-
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
@@ -62,16 +60,16 @@
                                     <th scope="row">@item.ServiceID</th>
                                     <td>@item.Name</td>
                                     <td>@item.Description</td>
-                                    <td><a href="#" class="btn btn-success"></a>Güncelle</td>
-                                    <td><a href="/Services/DeleteServices/@item.ServiceID" class="btn btn-danger"></a>Sil</td>
-
+                                    <td>
+                                        <a href="/Services/UpdateServices/@item.ServiceID" class="btn btn-success">Güncelle</a>
+                                    </td>
+                                    <td>
+                                        <a href="/Services/DeleteServices/@item.ServiceID" class="btn btn-danger">Sil</a>
+                                    </td>
                                 </tr>
-                                <!-- Diğer hizmetler için benzer satırlar -->
                             </tbody>
                         }
-
                     </table>
-                    <td><a href="#" class="btn btn-outline-info"></a>Ekle</td>
                 </div>
             </div>
 
@@ -81,9 +79,7 @@
                     Yeni Hizmet Ekle
                 </div>
                 <div class="card-body">
-
                     <button type="button" class="btn btn-primary" onclick="window.location.href='/Services/CreateServices'">Ekle</button>
-
                 </div>
             </div>
         </div>

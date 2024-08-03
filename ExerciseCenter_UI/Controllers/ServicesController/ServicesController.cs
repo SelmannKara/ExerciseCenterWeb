@@ -68,23 +68,26 @@ namespace RealEstate_Dapper_UI.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<UpdateServiceDto>(jsonData);
-                return View(values);
+                var service = JsonConvert.DeserializeObject<UpdateServiceDto>(jsonData);
+                return View(service);
             }
-            return View();
+            return RedirectToAction("Index");
         }
+
         [HttpPost]
-        public async Task<IActionResult> UpdateServices(UpdateServiceDto updateServicesDto)
+        public async Task<IActionResult> UpdateServices(UpdateServiceDto updateServiceDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(updateServicesDto);
+            var jsonData = JsonConvert.SerializeObject(updateServiceDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:44310/api/Services/", stringContent);
+            var responseMessage = await client.PutAsync($"https://localhost:44310/api/Services/{updateServiceDto.ID}", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }
-            return View();
+            return View(updateServiceDto);
         }
+
+
     }
 }
