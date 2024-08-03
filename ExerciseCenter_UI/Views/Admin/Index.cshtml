@@ -1,32 +1,6 @@
-﻿
-@{
-    Layout = null;
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<!DOCTYPE html>
-<html lang="tr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hizmetlerimiz - Admin Panel</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="~/ExerciseCenter/admin/admin_panel.css">
-</head>
-<body>
- 
-        @await Component.InvokeAsync("_AdminLayoutHeadComponentPartial");
-    @RenderBody()
-        <div class="wrapper">
-        @await Component.InvokeAsync("_AdminLayoutSidebarComponentPartial");
-        @await Component.InvokeAsync("_AdminLayoutMainContentComponentPartial");
-        </div>
-        @await Component.InvokeAsync("_AdminLayoutScriptAndHeadComponentPartial");
-        
-       
-    
 
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
