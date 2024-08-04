@@ -1,8 +1,10 @@
-﻿namespace ExerciseCenter_API.Dtos.WhoWeAreDtos
+﻿namespace ExerciseCenter_UI.Dtos.WhoWeAreDtos
 {
     public class UpdateWhoWeAreDto
     {
-        public string Title { get; set; }
+        public int ID { get; set; }
+        public string Title { get; set; }      
         public string Description { get; set; }
+        public string ImageUrl { get; set; }
     }
 }

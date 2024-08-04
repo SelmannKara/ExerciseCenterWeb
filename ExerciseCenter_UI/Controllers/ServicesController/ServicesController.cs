@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 
-namespace RealEstate_Dapper_UI.Controllers
+namespace ExerciseCenter_UI.Controllers
 {
     public class ServicesController : Controller
     {

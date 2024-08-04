@@ -1,4 +1,4 @@
-﻿namespace ExerciseCenter_API.Dtos.WhoWeAreDtos
+﻿namespace ExerciseCenter_UI.Dtos.WhoWeAreDtos
 {
     public class ResultWhoWeAreDto
     {
