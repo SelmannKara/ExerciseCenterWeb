@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using ExerciseCenter_API.Dtos.AppointmentsDtos;
 using ExerciseCenter_API.Dtos.BlogPostsDtos;
 using ExerciseCenter_API.Dtos.ServicesDtos;
 using ExerciseCenter_API.Dtos.TestimonialsDtos;
 using ExerciseCenter_API.Dtos.WhoWeAreDtos;
+using ExerciseCenter_API.Models.AppointmentsModels;
 using ExerciseCenter_API.Models.BlogPostsModels;
 using ExerciseCenter_API.Models.ServicesModels;
 using ExerciseCenter_API.Models.TestimonialsModels;
@@ -30,6 +32,8 @@ namespace ExerciseCenter_API.Mapping
             CreateMap<Testimonials, ResultTestimonialsDto>().ReverseMap();
             CreateMap<CreateTestimonialsDto, Testimonials>();
             CreateMap<UpdateTestimonialsDto, Testimonials>();
+
+            CreateMap<Appointments, ResultAppointmentsDto>().ReverseMap();
 
 
         }

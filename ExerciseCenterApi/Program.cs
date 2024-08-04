@@ -1,10 +1,12 @@
 
 using ExerciseCenter_API.Mapping;
 using ExerciseCenter_API.Models;
+using ExerciseCenter_API.Repositories.AppointmentsRepository;
 using ExerciseCenter_API.Repositories.BlogPostsRepository;
 using ExerciseCenter_API.Repositories.ServicesRepository;
 using ExerciseCenter_API.Repositories.TestimonialsRepository;
 using ExerciseCenter_API.Repositories.WhoWeAreRepository;
+using ExerciseCenter_API.Services.AppointmentsService;
 using ExerciseCenter_API.Services.BlogPostsService;
 using ExerciseCenter_API.Services.ServicesService;
 using ExerciseCenter_API.Services.TestimonialsService;
@@ -35,6 +37,10 @@ builder.Services.AddScoped<IBlogPostsService, BlogPostsService>();
 
 builder.Services.AddScoped<ITestimonialsRepository, TestimonialsRepository>();
 builder.Services.AddScoped<ITestimonialsService, TestimonialsService>();
+
+builder.Services.AddScoped<IAppointmentsRepository, AppointmentsRepository>();
+
+builder.Services.AddScoped<IAppointmentsService, AppointmentsService>();
 
 
 var app = builder.Build();
