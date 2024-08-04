@@ -1,0 +1,42 @@
+﻿@model ExerciseCenter_UI.Dtos.TestimonialsDtos.CreateTestimonialsDto
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yorumlar - Admin Panel</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/ExerciseCenter/admin/admin_panel.css">
+</head>
+
+
+<div class="container-fluid pt-4 px-4">
+    <div class="row g-4 justify-content-center">
+        <div class="col-12 col-md-10 offset-md-2">
+            <div class="bg-light rounded h-100 p-4">
+                <h6 class="mb-4">Yeni Yorum Ekleme Sayfası</h6>
+                <form method="post">
+                    <label> İsim</label>
+                    <input type="text" asp-for="NameSurname" class="form-control" />
+                    <br />
+
+                    <label>Meslek</label>
+                    <input type="text" asp-for="Job" class="form-control" />
+                    <br />
+                    <label>Yorum</label>
+                    <input type="text" asp-for="Description" class="form-control" />
+                    <br />
+
+                    <button class="btn btn-primary">Yorumu Kaydet</button>
+
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

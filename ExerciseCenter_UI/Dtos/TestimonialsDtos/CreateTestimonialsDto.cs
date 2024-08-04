@@ -1,4 +1,4 @@
-﻿namespace ExerciseCenter_API.Dtos.TestimonialsDtos
+﻿namespace ExerciseCenter_UI.Dtos.TestimonialsDtos
 {
     public class CreateTestimonialsDto
     {
