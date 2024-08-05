@@ -1,27 +1,68 @@
-﻿using ExerciseCenter_UI.Dtos.ServicesDtos;
+﻿using ExerciseCenter_UI.Dtos.AppointmentsDtos;
+using ExerciseCenter_UI.Dtos.ServicesDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Net.Http.Json;
 
 namespace ExerciseCenter_UI.Controllers.AppointmentController
 {
     public class AppointmentController : Controller
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly HttpClient _httpClient;
 
-        public AppointmentController(IHttpClientFactory httpClientFactory)
+        public AppointmentController(HttpClient httpClient)
         {
-            _httpClientFactory = httpClientFactory;
+            _httpClient = httpClient;
         }
+
+        // GET: Appointment
         public async Task<IActionResult> Index()
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44310/api/Services");
-            if (responseMessage.IsSuccessStatusCode)
+            // API'dan verileri alıyoruz
+            var response = await _httpClient.GetAsync("https://localhost:44310/api/Appointments");
+            if (response.IsSuccessStatusCode)
             {
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultServiceDto>>(jsonData);
-                return View(values);
+                var appointmentDates = await response.Content.ReadFromJsonAsync<List<ResultAppointmentsDto>>();
+
+                if (appointmentDates == null || !appointmentDates.Any())
+                {
+                    // API'dan veri alınamadıysa veya boşsa, bir hata döndürün veya boş bir liste gönderin
+                    return View(new List<ResultAppointmentsDto>());
+                }
+
+                // Gelen veriyi view'e gönderiyoruz
+                return View(appointmentDates);
             }
+            else
+            {
+                // Hata durumunda bir hata mesajı veya farklı bir işlem yapabilirsiniz
+                return View("Error");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateAppointmentsDto appointment)
+        {
+            if (ModelState.IsValid)
+            {
+                var response = await _httpClient.PostAsJsonAsync("https://localhost:44310/api/Appointments", appointment);
+                if (response.IsSuccessStatusCode)
+                {
+                    // Başarılı olduğunda bir başarı sayfasına yönlendirebilirsiniz veya başka bir işlem yapabilirsiniz
+                    return RedirectToAction("Success");
+                }
+                else
+                {
+                    // Hata durumunda hata sayfasına yönlendirme yapılabilir
+                    return View("Error");
+                }
+            }
+            return View(appointment);
+        }
+
+        // Başarılı randevu ekleme sonrası yönlendirme için bir Success action metodu
+        public IActionResult Success()
+        {
             return View();
         }
     }

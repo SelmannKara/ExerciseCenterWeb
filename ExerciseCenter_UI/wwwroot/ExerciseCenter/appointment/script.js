@@ -1,24 +1,28 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
-    var serviceDropdown = document.getElementById('service');
-    var dateInput = document.getElementById('date');
+﻿$(document).ready(function () {
+    console.log("Script çalıştırıldı");
 
-    serviceDropdown.addEventListener('change', function () {
-        var serviceId = this.value;
-        fetch(`/api/appointments/available-dates/${serviceId}`)
-            .then(response => response.json())
-            .then(data => {
-                // Flatpickr takvimini başlat ve mevcut tarihleri ayarla
-                flatpickr(dateInput, {
-                    enable: data.map(date => new Date(date)), // Tarihleri kullanıma aç
-                    dateFormat: "Y-m-d", // Tarih formatı
-                    minDate: "today", // Bugünden önceki tarihleri devre dışı bırak
-                });
-            });
+    // jQuery UI Datepicker'ı başlatıyoruz
+    $("#datepicker").datepicker({
+        dateFormat: "yy-mm-dd",
+        beforeShowDay: function (date) {
+            var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
+            return [disabledDates.indexOf(string) == -1];
+        }
     });
 
-    // İlk sayfa yüklendiğinde de takvimi başlat
-    flatpickr(dateInput, {
-        dateFormat: "Y-m-d",
-        minDate: "today",
-    });
+    // Saat seçeneklerini yarım saat aralıklarla ekliyoruz
+    var startTime = 9; // 9:00 AM
+    var endTime = 18; // 6:00 PM
+    var timeInterval = 30; // Dakika olarak aralık (yarım saat)
+
+    var timeSelect = $("#time");
+
+    for (var hour = startTime; hour < endTime; hour++) {
+        var minutes = 0;
+        while (minutes < 60) {
+            var timeValue = (hour < 10 ? "0" : "") + hour + ":" + (minutes < 10 ? "0" : "") + minutes;
+            timeSelect.append(new Option(timeValue, timeValue));
+            minutes += timeInterval;
+        }
+    }
 });
