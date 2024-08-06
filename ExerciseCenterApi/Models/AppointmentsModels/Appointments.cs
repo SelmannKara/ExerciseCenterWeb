@@ -6,5 +6,6 @@
         public DateTime AppointmentDate { get; set; }
         public DateTime CreatedAt { get; set; }
         public bool Status { get; set; }
+        public string Time { get; set; }
     }
 }

@@ -2,9 +2,30 @@
 
 @{
     Layout = null;
-    var disabledDates = Model != null
-        ? Model.Where(m => m.Status).Select(m => m.AppointmentDate.ToString("yyyy-MM-dd")).ToArray()
-        : new string[] { };
+    var timeSlots = new List<string>
+    {
+        "09:30", "10:00", "10:30", "11:00", "11:30",
+        "12:00", "12:30", "13:00", "13:30", "14:00",
+        "14:30", "15:00", "15:30", "16:00", "16:30",
+        "17:00", "17:30"
+    };
+
+    var disabledTimes = new Dictionary<string, List<string>>();
+
+    // API'den gelen randevuları kontrol ediyoruz ve her tarih için ayrı bir liste oluşturuyoruz
+    foreach (var appointment in Model)
+    {
+        if (appointment.Status)
+        {
+            var dateKey = appointment.AppointmentDate.Date.ToString("yyyy-MM-dd");
+            if (!disabledTimes.ContainsKey(dateKey))
+            {
+                disabledTimes[dateKey] = new List<string>();
+            }
+            disabledTimes[dateKey].Add(appointment.Time.Replace(".", ":"));
+        }
+    }
+    var disabledTimesJson = System.Text.Json.JsonSerializer.Serialize(disabledTimes);
 }
 
 <!DOCTYPE html>
@@ -17,13 +38,6 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
     <link rel="stylesheet" href="~/ExerciseCenter/appointment/styles.css">
-
-    <!-- disabledDates verisini JavaScript'e geçiyoruz -->
-    <script>
-        var disabledDates = @Html.Raw(Json.Serialize(disabledDates));
-    </script>
-
-    <script src="~/ExerciseCenter/appointment/script.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -71,13 +85,16 @@
 
                 <div class="input-group">
                     <label for="datepicker">Randevu Tarihi</label>
-                    <input type="text" id="datepicker" name="AppointmentDate" required>
+                    <input type="date" id="datepicker" name="AppointmentDate" required>
                 </div>
 
                 <div class="input-group">
                     <label for="time">Randevu Saati</label>
-                    <select id="time" name="Time" required>
-                        <!-- Saatler burada JavaScript ile otomatik olarak doldurulacak -->
+                    <select id="time" name="AppointmentTime" required>
+                        @foreach (var timeSlot in timeSlots)
+                        {
+                            <option value="@timeSlot">@timeSlot</option>
+                        }
                     </select>
                 </div>
 
@@ -123,5 +140,32 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Razor'dan gelen devre dışı bırakılacak zaman dilimlerini alıyoruz
+        var disabledTimes = @Html.Raw(disabledTimesJson);
+
+        // Tarih seçimi yapıldığında devre dışı bırakma işlemini yapıyoruz
+        $('#datepicker').on('change', function () {
+            var selectedDate = $(this).val();
+            var selectElement = $('#time');
+
+            // Tüm seçenekleri önce aktif hale getiriyoruz
+            selectElement.find('option').each(function () {
+                $(this).prop('disabled', false);
+            });
+
+            // Seçilen tarihe göre devre dışı bırakılacak saatleri kontrol ediyoruz
+            if (disabledTimes[selectedDate]) {
+                var timesToDisable = disabledTimes[selectedDate];
+                selectElement.find('option').each(function () {
+                    var optionValue = $(this).val();
+                    if (timesToDisable.includes(optionValue)) {
+                        $(this).prop('disabled', true);
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
