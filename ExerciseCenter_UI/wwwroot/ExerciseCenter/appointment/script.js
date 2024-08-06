@@ -1,7 +1,5 @@
-﻿$(document).ready(function () {
-    console.log("Script çalıştırıldı");
-
-    // jQuery UI Datepicker'ı başlatıyoruz
+﻿$(function () {
+    // Disable specific dates
     $("#datepicker").datepicker({
         dateFormat: "yy-mm-dd",
         beforeShowDay: function (date) {
@@ -10,10 +8,10 @@
         }
     });
 
-    // Saat seçeneklerini yarım saat aralıklarla ekliyoruz
+    // Time selection with 30-minute intervals
     var startTime = 9; // 9:00 AM
     var endTime = 18; // 6:00 PM
-    var timeInterval = 30; // Dakika olarak aralık (yarım saat)
+    var timeInterval = 30; // 30-minute intervals
 
     var timeSelect = $("#time");
 

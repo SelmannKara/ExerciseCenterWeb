@@ -17,36 +17,13 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
     <link rel="stylesheet" href="~/ExerciseCenter/appointment/styles.css">
+
+    <!-- disabledDates verisini JavaScript'e geçiyoruz -->
     <script>
-        $(function () {
-            // Disable specific dates
-            var disabledDates = @Html.Raw(Json.Serialize(disabledDates));
-
-            $("#datepicker").datepicker({
-                dateFormat: "yy-mm-dd",
-                beforeShowDay: function (date) {
-                    var string = jQuery.datepicker.formatDate('yy-mm-dd', date);
-                    return [disabledDates.indexOf(string) == -1];
-                }
-            });
-
-            // Time selection with 30-minute intervals
-            var startTime = 9; // 9:00 AM
-            var endTime = 18; // 6:00 PM
-            var timeInterval = 30; // 30-minute intervals
-
-            var timeSelect = $("#time");
-
-            for (var hour = startTime; hour < endTime; hour++) {
-                var minutes = 0;
-                while (minutes < 60) {
-                    var timeValue = (hour < 10 ? "0" : "") + hour + ":" + (minutes < 10 ? "0" : "") + minutes;
-                    timeSelect.append(new Option(timeValue, timeValue));
-                    minutes += timeInterval;
-                }
-            }
-        });
+        var disabledDates = @Html.Raw(Json.Serialize(disabledDates));
     </script>
+
+    <script src="~/ExerciseCenter/appointment/script.js"></script>
 </head>
 <body>
     <!-- Header -->
@@ -71,48 +48,41 @@
     <section class="appointment-section">
         <div class="container">
             <h2>Randevu Al</h2>
-            @if (Model == null || !Model.Any())
-            {
-                <p>Uygun randevu bulunamadı.</p>
-            }
-            else
-            {
-                <form asp-action="Create" method="post" class="appointment-form">
-                    <div class="input-group">
-                        <label for="name">İsim Soyisim</label>
-                        <input type="text" id="name" name="Name" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="phone">Telefon Numarası</label>
-                        <input type="tel" id="phone" name="Phone" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="Email" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="service">Hizmet Seçimi</label>
-                        <select id="service" name="ServiceId" required>
-                            <!-- Hizmetler burada listelenecek -->
-                            <option value="#">#</option>
-                        </select>
-                    </div>
+            <form asp-action="Create" method="post" class="appointment-form">
+                <div class="input-group">
+                    <label for="name">İsim Soyisim</label>
+                    <input type="text" id="name" name="Name" required>
+                </div>
+                <div class="input-group">
+                    <label for="phone">Telefon Numarası</label>
+                    <input type="tel" id="phone" name="Phone" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="Email" required>
+                </div>
+                <div class="input-group">
+                    <label for="service">Hizmet Seçimi</label>
+                    <select id="service" name="ServiceId" required>
+                        <!-- Hizmetler burada listelenecek -->
+                        <option value="#"></option>
+                    </select>
+                </div>
 
-                    <div class="input-group">
-                        <label for="datepicker">Randevu Tarihi</label>
-                        <input type="text" id="datepicker" name="AppointmentDate" required>
-                    </div>
+                <div class="input-group">
+                    <label for="datepicker">Randevu Tarihi</label>
+                    <input type="text" id="datepicker" name="AppointmentDate" required>
+                </div>
 
-                    <div class="input-group">
-                        <label for="time">Randevu Saati</label>
-                        <select id="time" name="Time" required>
-                            <!-- Saatler burada JavaScript ile otomatik olarak doldurulacak -->
-                        </select>
-                    </div>
+                <div class="input-group">
+                    <label for="time">Randevu Saati</label>
+                    <select id="time" name="Time" required>
+                        <!-- Saatler burada JavaScript ile otomatik olarak doldurulacak -->
+                    </select>
+                </div>
 
-                    <button type="submit" class="btn">Randevu Al</button>
-                </form>
-            }
+                <button type="submit" class="btn">Randevu Al</button>
+            </form>
         </div>
     </section>
 
