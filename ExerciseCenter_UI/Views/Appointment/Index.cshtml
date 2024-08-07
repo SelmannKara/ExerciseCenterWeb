@@ -1,30 +1,34 @@
-﻿@model List<ExerciseCenter_UI.Dtos.AppointmentsDtos.ResultAppointmentsDto>
+﻿@model ExerciseCenter_UI.Models.AppointmentModels.AppointmentsViewModel
 
 @{
     Layout = null;
+
+    // Time slots for selection
     var timeSlots = new List<string>
     {
-        "09:30", "10:00", "10:30", "11:00", "11:30",
-        "12:00", "12:30", "13:00", "13:30", "14:00",
-        "14:30", "15:00", "15:30", "16:00", "16:30",
-        "17:00", "17:30"
+        "09:00", "09:30", "10:00", "10:30", "11:00", "11:30",
+        "12:00", "12:30", "13:00", "13:30", "14:00", "14:30",
+        "15:00", "15:30", "16:00", "16:30", "17:00", "17:30"
     };
 
     var disabledTimes = new Dictionary<string, List<string>>();
 
-    // API'den gelen randevuları kontrol ediyoruz ve her tarih için ayrı bir liste oluşturuyoruz
-    foreach (var appointment in Model)
+    if (Model?.ResultAppointments != null)
     {
-        if (appointment.Status)
+        foreach (var appointment in Model.ResultAppointments)
         {
-            var dateKey = appointment.AppointmentDate.Date.ToString("yyyy-MM-dd");
-            if (!disabledTimes.ContainsKey(dateKey))
+            if (appointment.Status)
             {
-                disabledTimes[dateKey] = new List<string>();
+                var dateKey = appointment.AppointmentDate.Date.ToString("yyyy-MM-dd");
+                if (!disabledTimes.ContainsKey(dateKey))
+                {
+                    disabledTimes[dateKey] = new List<string>();
+                }
+                disabledTimes[dateKey].Add(appointment.Time.Replace(".", ":"));
             }
-            disabledTimes[dateKey].Add(appointment.Time.Replace(".", ":"));
         }
     }
+
     var disabledTimesJson = System.Text.Json.JsonSerializer.Serialize(disabledTimes);
 }
 
@@ -62,35 +66,56 @@
     <section class="appointment-section">
         <div class="container">
             <h2>Randevu Al</h2>
-            <form asp-action="Create" method="post" class="appointment-form">
+
+            @if (ViewBag.ErrorMessages != null)
+            {
+                <div class="error-messages">
+                    @foreach (var error in ViewBag.ErrorMessages)
+                    {
+                        <p>@error</p>
+                    }
+                </div>
+            }
+
+            <form method="post" action="CreateAppointments" class="appointment-form">
+                @Html.AntiForgeryToken()
                 <div class="input-group">
                     <label for="name">İsim Soyisim</label>
-                    <input type="text" id="name" name="Name" required>
+                    <input type="text" asp-for="CreateAppointment.Name" id="name" name="CreateAppointment.Name" required>
                 </div>
                 <div class="input-group">
                     <label for="phone">Telefon Numarası</label>
-                    <input type="tel" id="phone" name="Phone" required>
+                    <input type="tel" asp-for="CreateAppointment.Phone" id="phone" name="CreateAppointment.Phone" required>
                 </div>
                 <div class="input-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" name="Email" required>
+                    <input type="email" asp-for="CreateAppointment.Email" id="email" name="CreateAppointment.Email" required>
                 </div>
                 <div class="input-group">
                     <label for="service">Hizmet Seçimi</label>
-                    <select id="service" name="ServiceId" required>
-                        <!-- Hizmetler burada listelenecek -->
-                        <option value="#"></option>
+                    <select id="service" asp-for="CreateAppointment.ServiceId" name="CreateAppointment.ServiceId" required>
+                        @if (Model.Services != null && Model.Services.Any())
+                        {
+                            @foreach (var service in Model.Services)
+                            {
+                                <option value="@service.ServiceID">@service.Name</option>
+                            }
+                        }
+                        else
+                        {
+                            <option value="" disabled selected>Hizmetler yüklenemedi</option>
+                        }
                     </select>
                 </div>
 
                 <div class="input-group">
                     <label for="datepicker">Randevu Tarihi</label>
-                    <input type="date" id="datepicker" name="AppointmentDate" required>
+                    <input type="date" asp-for="CreateAppointment.AppointmentDate" id="datepicker" name="CreateAppointment.AppointmentDate" required>
                 </div>
 
                 <div class="input-group">
                     <label for="time">Randevu Saati</label>
-                    <select id="time" name="AppointmentTime" required>
+                    <select id="time" asp-for="CreateAppointment.Time" name="CreateAppointment.Time" required>
                         @foreach (var timeSlot in timeSlots)
                         {
                             <option value="@timeSlot">@timeSlot</option>
@@ -103,59 +128,17 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section logo-section">
-                    <img src="../images/logo.png" alt="Lavinia Logo">
-                    <p>Lavinia Egzersiz ve Danışmanlık Merkezi</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section contact-section">
-                    <h3>İletişim Bilgileri</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> Adres: Orta, İnönü Cd. No:61, 61300 Akçaabat/Trabzon</p>
-                    <p><i class="fas fa-envelope"></i> Email: info@lavinia.com</p>
-                    <p><i class="fas fa-phone-alt"></i> Telefon: 0561 661 61 61</p>
-                    <a href="../appointment/appointment.html" class="btn">RANDEVU AL</a>
-                </div>
-                <div class="footer-section services-section">
-                    <h3>Hizmetlerimiz</h3>
-                    <p>Reformer Pilates</p>
-                    <p>Hamile Pilates</p>
-                    <p>Yoga Terapi</p>
-                    <p>Manuel Terapi</p>
-                    <p>Pelvik Taban Rehabilitasyonu</p>
-                    <p>3 Boyutlu Skolyoz Egzersizleri</p>
-                    <p>Kanser Sonrası Egzersiz Danışmanlığı</p>
-                    <p>Dans ve Zumba</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© Copyright 2020 - 2024 | Lavinia Egzersiz ve Danışmanlık Merkezi | Tüm hakları saklıdır | Design SelmanKara</p>
-            </div>
-        </div>
-    </footer>
-
     <script>
-        // Razor'dan gelen devre dışı bırakılacak zaman dilimlerini alıyoruz
         var disabledTimes = @Html.Raw(disabledTimesJson);
 
-        // Tarih seçimi yapıldığında devre dışı bırakma işlemini yapıyoruz
         $('#datepicker').on('change', function () {
             var selectedDate = $(this).val();
             var selectElement = $('#time');
 
-            // Tüm seçenekleri önce aktif hale getiriyoruz
             selectElement.find('option').each(function () {
                 $(this).prop('disabled', false);
             });
 
-            // Seçilen tarihe göre devre dışı bırakılacak saatleri kontrol ediyoruz
             if (disabledTimes[selectedDate]) {
                 var timesToDisable = disabledTimes[selectedDate];
                 selectElement.find('option').each(function () {
