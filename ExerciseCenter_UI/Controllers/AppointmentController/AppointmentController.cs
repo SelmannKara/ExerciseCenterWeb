@@ -47,6 +47,7 @@ namespace ExerciseCenter_UI.Controllers.AppointmentController
         [HttpPost]
         public async Task<IActionResult> CreateAppointments(AppointmentsViewModel model)
         {
+            var serviceResponse = await _httpClient.GetAsync("https://localhost:44310/api/Services");
             if (!ModelState.IsValid)
             {
                 // ModelState hatalarını toplayın

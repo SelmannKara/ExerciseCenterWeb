@@ -8,9 +8,8 @@ namespace ExerciseCenter_API.Dtos.AppointmentsDtos
         public string Name { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
-        public string AppointmentDate { get; set; }
-        public string ServiceName { get; set; }
-        public string ServiceID { get; set; }
+        public string AppointmentDate { get; set; }    
+        public int ServiceID { get; set; }
       
     }
 }
