@@ -35,5 +35,13 @@ namespace ExerciseCenter_API.Controllers.AppointmentControllers
             }
             return Ok(appointment);
         }
+
+        [HttpPost]
+        public async Task<ActionResult<ResultAppointmentsDto>> CreateAppointments(CreateAppointmentsDto appointmentsCreateDto)
+        {
+            var appointments = await _appointmentsService.CreateAppointments(appointmentsCreateDto);
+            return CreatedAtAction(nameof(GetAppointments), new { id = appointments.AppointmentID }, appointments);
+        }
+
     }
 }
