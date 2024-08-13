@@ -1,26 +1,38 @@
 ﻿using ExerciseCenter_UI.Dtos.ServicesDtos;
+using ExerciseCenter_UI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 
 namespace ExerciseCenter_UI.Controllers
 {
+    [Authorize]
     public class ServicesController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
-        public ServicesController(IHttpClientFactory httpClientFactory)
+        private readonly ILoginService _loginService;
+
+        public ServicesController(IHttpClientFactory httpClientFactory, ILoginService loginService)
         {
             _httpClientFactory = httpClientFactory;
+            _loginService = loginService;
         }
         public async Task<IActionResult> Index()
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44310/api/Services");
-            if (responseMessage.IsSuccessStatusCode)
+            var user = User.Claims;
+            var userId = _loginService.GetUserId;
+            var token = User.Claims.FirstOrDefault(x => x.Type == "exercisecentertoken")?.Value;
+            if (token != null)
             {
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultServiceDto>>(jsonData);
-                return View(values);
+                var client = _httpClientFactory.CreateClient();
+                var responseMessage = await client.GetAsync("https://localhost:44310/api/Services");
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                    var values = JsonConvert.DeserializeObject<List<ResultServiceDto>>(jsonData);
+                    return View(values);
+                }
             }
             return View();
         }
