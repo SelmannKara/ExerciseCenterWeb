@@ -31,7 +31,8 @@ namespace ExerciseCenter_API.Controllers
                 var model = new GetChecktAppUserViewModel
                 {
                     Username = user.Username,
-                    Id = user.UserId
+                    Id = user.UserId,
+                    Role=user.Role
                 };
 
                 var token = JwtTokenGenerator.GenerateToken(model);

@@ -12,5 +12,6 @@ namespace ExerciseCenter_UI.Services
         }
 
         public string GetUserId => _contextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;
+
     }
 }

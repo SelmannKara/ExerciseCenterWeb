@@ -42,6 +42,11 @@ builder.Services.AddScoped<IAppointmentsRepository, AppointmentsRepository>();
 
 builder.Services.AddScoped<IAppointmentsService, AppointmentsService>();
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("MemberPolicy", policy => policy.RequireRole("Member"));
+});
 
 var app = builder.Build();
 

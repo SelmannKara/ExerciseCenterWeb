@@ -11,6 +11,7 @@ namespace ExerciseCenter_API.Tools
         {
             var claims= new List<Claim>();
             if (!string.IsNullOrWhiteSpace(model.Role))
+
                 claims.Add(new Claim(ClaimTypes.Role, model.Role));
 
             claims.Add(new Claim(ClaimTypes.NameIdentifier,model.Id.ToString()));
@@ -24,6 +25,7 @@ namespace ExerciseCenter_API.Tools
             JwtSecurityToken token= new JwtSecurityToken(issuer:JwtTokenDefaults.ValidIssuer,audience:JwtTokenDefaults.ValidAuidience,claims:claims,notBefore:DateTime.UtcNow,expires:expireDate,signingCredentials:signinCredentials);
 
             JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+
             return new TokenResponseViewModel(tokenHandler.WriteToken(token), expireDate);
         }
     }

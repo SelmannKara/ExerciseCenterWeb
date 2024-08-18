@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ExerciseCenter_UI.Controllers
 {
-    [Authorize]
+   
     public class ServicesController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -18,6 +18,7 @@ namespace ExerciseCenter_UI.Controllers
             _httpClientFactory = httpClientFactory;
             _loginService = loginService;
         }
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var user = User.Claims;
