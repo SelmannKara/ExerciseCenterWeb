@@ -110,7 +110,8 @@
 
                 <div class="input-group">
                     <label for="datepicker">Randevu Tarihi</label>
-                    <input type="date" asp-for="CreateAppointment.AppointmentDate" id="datepicker" name="CreateAppointment.AppointmentDate" required>
+                    <input type="date" asp-for="CreateAppointment.AppointmentDate" id="datepicker" name="CreateAppointment.AppointmentDate" required value="@DateTime.Now.ToString("yyyy-MM-dd")">
+
                 </div>
 
                 <div class="input-group">
@@ -122,6 +123,7 @@
                         }
                     </select>
                 </div>
+
 
                 <button type="submit" class="btn">Randevu Al</button>
             </form>
@@ -138,6 +140,15 @@
             selectElement.find('option').each(function () {
                 $(this).prop('disabled', false);
             });
+            document.addEventListener('DOMContentLoaded', function () {
+                var today = new Date().toISOString().split('T')[0];
+                document.getElementById("datepicker").setAttribute('min', today);
+            });
+            document.addEventListener('DOMContentLoaded', function () {
+                var today = new Date().toISOString().split('T')[0];
+                var datepicker = document.getElementById("datepicker");
+                datepicker.setAttribute('min', today);
+                datepicker.value = today;
 
             if (disabledTimes[selectedDate]) {
                 var timesToDisable = disabledTimes[selectedDate];
