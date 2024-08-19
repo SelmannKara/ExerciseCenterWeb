@@ -6,5 +6,6 @@
         public DateTime AppointmentDate { get; set; }
         public bool Status { get; set; }
         public string Time { get; set; }
+        public string Name { get; set; }
     }
 }

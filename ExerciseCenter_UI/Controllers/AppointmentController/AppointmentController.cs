@@ -82,5 +82,6 @@ namespace ExerciseCenter_UI.Controllers.AppointmentController
             ModelState.AddModelError(string.Empty, "Randevu oluşturulurken bir hata oluştu.");
             return View("Index", model);
         }
+    
     }
 }

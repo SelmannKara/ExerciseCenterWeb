@@ -1,0 +1,77 @@
+﻿@model List<ExerciseCenter_UI.Dtos.AppointmentsDtos.ResultAppointmentsDto>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hizmetlerimiz - Admin Panel</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/ExerciseCenter/admin/admin_panel.css">
+</head>
+<body>
+
+
+    <!-- Main Content -->
+    <div class="content">
+        <h2>Randevular</h2>
+        <p>Bu sayfada randevuları yönetebilirsiniz.</p>
+
+        <!-- Appointments Listeleme -->
+        <div class="card">
+            <div class="card-header">
+                Appointments Listesi
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Hizmet İsmi</th>
+                            <th scope="col">Açıklama</th>
+                            <th scope="col">Güncelle</th>
+                            <th scope="col">Sil</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        <tbody>
+                            <tr>
+                                <th scope="row">@item.AppointmentID</th>
+                                <td>@item.Name</td>
+                                <td>@item.Status</td>
+                                <td>
+                                    <a href="/AdminAppointment/UpdateAppointments/@item.AppointmentID" class="btn btn-success">Güncelle</a>
+                                </td>
+                                <td>
+                                    <a href="/AdminAppointment/DeleteAppointments/@item.AppointmentID" class="btn btn-danger">Sil</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    }
+                </table>
+            </div>
+        </div>
+
+       
+        <div class="card mt-4">
+            <div class="card-header">
+                Yeni randevu Ekle
+            </div>
+            <div class="card-body">
+                <button type="button" class="btn btn-primary" onclick="window.location.href='/Appointments/CreateAppointments'">Ekle</button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+

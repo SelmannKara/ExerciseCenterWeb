@@ -140,16 +140,7 @@
             selectElement.find('option').each(function () {
                 $(this).prop('disabled', false);
             });
-            document.addEventListener('DOMContentLoaded', function () {
-                var today = new Date().toISOString().split('T')[0];
-                document.getElementById("datepicker").setAttribute('min', today);
-            });
-            document.addEventListener('DOMContentLoaded', function () {
-                var today = new Date().toISOString().split('T')[0];
-                var datepicker = document.getElementById("datepicker");
-                datepicker.setAttribute('min', today);
-                datepicker.value = today;
-
+         
             if (disabledTimes[selectedDate]) {
                 var timesToDisable = disabledTimes[selectedDate];
                 selectElement.find('option').each(function () {

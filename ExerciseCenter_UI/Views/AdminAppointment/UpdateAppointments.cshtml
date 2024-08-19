@@ -1,0 +1,70 @@
+﻿@model ExerciseCenter_UI.Dtos.AppointmentsDtos.UpdateAppointmentsDto
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Posts Güncelleme Sayfası</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-12">
+                <div class="bg-light rounded h-100 p-4">
+                    <h6 class="mb-4">Blog Posts Güncelleme Sayfası</h6>
+                    <form method="post">
+                        <input type="hidden" name="AppointmentID" asp-for=AppointmentID />
+                        <div class="form-group">
+                            <label for="appointmentsTitle">İsim</label>
+                            <input type="text" asp-for="Name" class="form-control" id="appointmentsTitle" />
+                        </div>
+                        <br /> 
+                        <div class="form-group">
+                            <label for="appointmentsTitle">Mail</label>
+                            <input type="text" asp-for="Email" class="form-control" id="appointmentsTitle" />
+                        </div>
+                        <br /> 
+                        <div class="form-group">
+                            <label for="appointmentsTitle">Telefon</label>
+                            <input type="text" asp-for="Phone" class="form-control" id="appointmentsTitle" />
+                        </div>
+                        <br /> 
+                        <div class="form-group">
+                            <label for="appointmentsTitle">Randevu Tarihi</label>
+                            <input type="text" asp-for="AppointmentDate" class="form-control" id="appointmentsTitle" />
+                        </div>
+                        <br />
+
+                        <div class="form-group">
+                            <label for="appointmentsDescription">Statüsü</label>
+                            <input type="text" asp-for="Status" class="form-control" id="appointmentsDescription" />
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label for="appointmentsDescription">Servis</label>
+                            <input type="text" asp-for="ServiceID" class="form-control" id="appointmentsDescription" />
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <label for="appointmentsDescription">Saat</label>
+                            <input type="text" asp-for="Time" class="form-control" id="appointmentsDescription" />
+                        </div>
+                        <br />
+
+                        <button type="submit" class="btn btn-primary">Güncelle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
