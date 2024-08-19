@@ -52,7 +52,7 @@ namespace ExerciseCenter_UI.Controllers.LoginController
                             IsPersistent = true
                         };
                         await HttpContext.SignInAsync(JwtBearerDefaults.AuthenticationScheme,new ClaimsPrincipal(claimsIdentity),authProps);
-                        return RedirectToAction("Index", "Services");
+                        return RedirectToAction("Index", "Home");
                     }
                 }
             }

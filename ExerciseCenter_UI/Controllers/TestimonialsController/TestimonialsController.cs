@@ -1,4 +1,5 @@
 ﻿using ExerciseCenter_UI.Dtos.TestimonialsDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
@@ -12,7 +13,7 @@ namespace ExerciseCenter_UI.Controllers.TestimonialsController
         {
             _httpClientFactory = httpClientFactory;
         }
-
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();

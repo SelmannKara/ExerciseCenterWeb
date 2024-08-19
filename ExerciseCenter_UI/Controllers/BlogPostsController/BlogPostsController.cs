@@ -1,4 +1,5 @@
 ﻿using ExerciseCenter_UI.Dtos.BlogPostsDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
@@ -13,6 +14,7 @@ namespace ExerciseCenter_UI.Controllers.BlogPostsController
         {
             _httpClientFactory = httpClientFactory;
         }
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
