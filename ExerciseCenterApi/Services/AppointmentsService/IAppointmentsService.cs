@@ -7,5 +7,7 @@ namespace ExerciseCenter_API.Services.AppointmentsService
         Task<IEnumerable<ResultAppointmentsDto>> GetAllAppointments();
         Task<ResultAppointmentsDto> GetAppointmentsById(int id);
         Task<ResultAppointmentsDto> CreateAppointments(CreateAppointmentsDto createAppointmentsDto);
+        Task UpdateAppointments(int id, UpdateAppointmentsDto updateAppointmentsDto);
+        Task DeleteAppointments(int id);
     }
 }

@@ -42,6 +42,19 @@ namespace ExerciseCenter_API.Controllers.AppointmentControllers
             var appointments = await _appointmentsService.CreateAppointments(appointmentsCreateDto);
             return CreatedAtAction(nameof(GetAppointments), new { id = appointments.AppointmentID }, appointments);
         }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateAppointments(int id, UpdateAppointmentsDto appointmentsUpdateDto)
+        {
+            await _appointmentsService.UpdateAppointments(id, appointmentsUpdateDto);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAppointments(int id)
+        {
+            await _appointmentsService.DeleteAppointments(id);
+            return NoContent();
+        }
 
     }
 }

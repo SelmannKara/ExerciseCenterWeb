@@ -30,5 +30,21 @@ namespace ExerciseCenter_API.Repositories.AppointmentsRepository
             await _context.SaveChangesAsync();
             return appointments;
         }
+
+         public async Task UpdateAppointments(Appointments appointments)
+        {
+            _context.Entry(appointments).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAppointments(int id)
+        {
+            var appointments = await _context.Appointments.FindAsync(id);
+            if (appointments != null)
+            {
+                _context.Appointments.Remove(appointments);
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

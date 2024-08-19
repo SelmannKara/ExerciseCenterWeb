@@ -1,5 +1,6 @@
 ﻿using ExerciseCenter_API.Models.AppointmentsModels;
 using ExerciseCenter_API.Models.AppointmentsModels;
+using ExerciseCenter_API.Models.BlogPostsModels;
 
 namespace ExerciseCenter_API.Repositories.AppointmentsRepository
 {
@@ -8,5 +9,8 @@ namespace ExerciseCenter_API.Repositories.AppointmentsRepository
         Task<IEnumerable<Appointments>> GetAllAppointments();
         Task<Appointments> GetAppointmentsById(int id);
         Task<Appointments> CreateAppointments(Appointments appointments);
+
+        Task UpdateAppointments(Appointments appointments);
+        Task DeleteAppointments(int id);
     }
 }

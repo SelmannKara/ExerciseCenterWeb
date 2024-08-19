@@ -35,6 +35,7 @@ namespace ExerciseCenter_API.Mapping
 
             CreateMap<Appointments, ResultAppointmentsDto>().ReverseMap();
             CreateMap<CreateAppointmentsDto, Appointments>();
+            CreateMap<UpdateAppointmentsDto, Appointments>();
 
 
         }
